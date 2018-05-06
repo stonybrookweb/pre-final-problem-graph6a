@@ -120,84 +120,73 @@ void Graph::tree_level(int x, int level)
 
 void Graph::tree_level(int x, int level, const Edge &original)
 {
-    int j, i;
-    ++level;
-    Edge temp(original);
-    for (j = 0; j < size(); ++j)
-    {
-        if (original.getEdge(x, j))
+    if ( 0 != x ) {
+        int j, i;
+        ++level;
+        Edge temp(original);
+        for (j = 0; j < size(); ++j)
         {
-            for (i = 1; i < level; cout << "   ", ++i);
-            cout << "  (" << x << ", " << j << ")" << endl;
-            temp.useEdge(x, j);
-            if (x != j)
-                tree_level(j, level, temp);
+            if (original.getEdge(x, j))
+            {
+                for (i = 1; i < level; cout << "   ", ++i);
+                cout << "  (" << x << ", " << j << ")" << endl;
+                temp.useEdge(x, j);
+                if (x != j)
+                    tree_level(j, level, temp);
+            }
         }
     }
 }
 int main() {
     Graph G;
     int i, j, nr, x;
-//    cout << "Enter number of vertices (nr > 1) ";
-//    cin >> nr;
-//    if (cin.eof())
-//        exit(1);
-//    else
-//        if(!cin.good() || nr < 2)
-//        {
-//            cout << "Invalid input for number of vertices. "
-//            << "Program terminating." << endl;
-//            exit(2);
-//        }
-//
-    nr = 5;
-    
+    cout << "Enter number of vertices (nr > 1) ";
+    cin >> nr;
+    if (cin.eof())
+        exit(1);
+    else
+        if(!cin.good() || nr < 2)
+        {
+            cout << "Invalid input for number of vertices. "
+            << "Program terminating." << endl;
+            exit(2);
+        }
     G.add_vertexes(nr);
-    
-    G.add_edge(0, 1);
-    G.add_edge(0, 2);
-    G.add_edge(1, 2);
-    G.add_edge(1, 3);
-    G.add_edge(1, 4);
-    G.add_edge(2, 3);
-    G.add_edge(2, 4);
-    G.add_edge(3, 4);
-    G.add_edge(4, 0);
-//    cout << "Number of vertices is " << G.size() << endl << endl;
-//    cout << "Beginning and Terminating vertexes must be between 0 and "
-//    << (nr - 1) << " inclusive" << endl;
-//    cout << "Beginning and terminating vertexes must not be "
-//    << "the same for an edge in this graph." << endl;
-//    cout << "Enter EOF at keyboard to view displays." << endl;
-//    for (x = 0; x < nr*(nr - 1) && !cin.eof();)
-//    {
-//        cout << "Enter the two bounding vertexes of an edge or EOF" << endl;
-//        cin >> i >> j;
-//        if (!cin.eof())
-//        {
-//            if (!cin.good())
-//            {
-//                cout << "Invalid input for an edge. " << endl;
-//                cin.clear();
-//                cin.ignore(256);
-//                cout << "Enter the two bounding Vertexes of an edge or EOF" << endl;
-//            }
-//            else if (i >= nr || j >= nr)
-//                cout << "Value of Beginning or End vertex must not be >= "
-//                << nr << endl;
-//            else if (i == j)
-//                cout << "Beginning and terminating vertexes must not be "
-//                << "the same for an edge in this graph." << endl;
-//            //            else if (i > j)
-//            //                cout << "Beginning vertex must not be greater than "
-//            //                << "terminating vertex for an edge in this graph." << endl;
-//            else
-//            {
-//                G.add_edge(i, j);
-//                ++x;
-//            }
-//        }
-//    }
+    cout << "Number of vertices is " << G.size() << endl << endl;
+    cout << "Beginning and Terminating vertexes must be between 0 and "
+    << (nr - 1) << " inclusive" << endl;
+    cout << "Beginning and terminating vertexes must not be "
+    << "the same for an edge in this graph." << endl;
+    cout << "Enter EOF at keyboard to view displays." << endl;
+    for (x = 0; x < nr*(nr - 1) && !cin.eof();)
+    {
+        cout << "Enter the two bounding vertexes of an edge or EOF" << endl;
+        cin >> i >> j;
+        if (!cin.eof())
+        {
+            if (!cin.good())
+            {
+                cout << "Invalid input for an edge. " << endl;
+                cin.clear();
+                cin.ignore(256);
+                cout << "Enter the two bounding Vertexes of an edge or EOF" << endl;
+            }
+            else if (i >= nr || j >= nr)
+                cout << "Value of Beginning or End vertex must not be >= "
+                << nr << endl;
+            else if (i == j)
+                cout << "Beginning and terminating vertexes must not be "
+                << "the same for an edge in this graph." << endl;
+            //            else if (i > j)
+            //                cout << "Beginning vertex must not be greater than "
+            //                << "terminating vertex for an edge in this graph." << endl;
+            else
+            {
+                G.add_edge(i, j);
+                ++x;
+            }
+        }
+    }
     cout << "Directed List of Nearest Neighbor Vertexes for each Vertex"
     << endl;
     for (i = 0; i < G.size(); ++i)
