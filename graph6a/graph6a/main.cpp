@@ -1,3 +1,6 @@
+// Pre Final Problem1
+// By Alana Martin
+
 // Author: John Maslanka
 // Date: 27-Dec-2002
 // Installation: Home PC with MicroSoft Visual C++ V6.0
