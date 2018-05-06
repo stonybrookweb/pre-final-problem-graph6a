@@ -1,3 +1,6 @@
+// Pre Final Problem1
+// By Alana Martin
+
 // Author: John Maslanka
 // Date: 27-Dec-2002
 // Installation: Home PC with MicroSoft Visual C++ V6.0
@@ -117,18 +120,20 @@ void Graph::tree_level(int x, int level)
 
 void Graph::tree_level(int x, int level, const Edge &original)
 {
-    int j, i;
-    ++level;
-    Edge temp(original);
-    for (j = 0; j < size(); ++j)
-    {
-        if (original.getEdge(x, j))
+    if ( 0 != x ) {
+        int j, i;
+        ++level;
+        Edge temp(original);
+        for (j = 0; j < size(); ++j)
         {
-            for (i = 1; i < level; cout << "   ", ++i);
-            cout << "  (" << x << ", " << j << ")" << endl;
-            temp.useEdge(x, j);
-            if (x != j)
-                tree_level(j, level, temp);
+            if (original.getEdge(x, j))
+            {
+                for (i = 1; i < level; cout << "   ", ++i);
+                cout << "  (" << x << ", " << j << ")" << endl;
+                temp.useEdge(x, j);
+                if (x != j)
+                    tree_level(j, level, temp);
+            }
         }
     }
 }
